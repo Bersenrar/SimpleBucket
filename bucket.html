@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+    <div class="bucket">
+        <span id="goods_amt">Загальна кількість товару: <span id="goods_amt_int">0</span></span>
+        <br>
+        <span id="whole_summ">Сумма до оплаты: <span id="whole_summ_int">0</span></span>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // Function to fetch data from local storage and update the page
+            function updatePageFromLocalStorage() {
+                let goodsAmt = localStorage.getItem('goods_amt');
+                if (goodsAmt !== null) {
+                    $("#goods_amt_int").text(goodsAmt);
+                }
+
+                let whole_summ = localStorage.getItem("whole_summ");
+                if (whole_summ !== null){
+                    $("#whole_summ_int").text(whole_summ);
+                }
+                // Add other properties as needed
+            }
+
+            // Call the function when the page loads
+            updatePageFromLocalStorage();
+        });
+    </script>
+</body>
+</html>

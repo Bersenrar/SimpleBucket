@@ -1,0 +1,9 @@
+{
+    "goods_amt": 0,
+    "books": {
+        "lavkraft_chtulhu": {
+            "price": 500,
+            "amt": 0
+        }
+    }
+}

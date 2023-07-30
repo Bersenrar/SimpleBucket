@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <link rel="stylesheet" href="./styles.css">
+    </head>
+
+    <body>
+        <div class="welcome_cont">
+            <div class="welcome_title">
+                <h1>
+                    Book-Shop
+                </h1>
+                <hr>
+            </div>
+            
+            <div class="bucket_section">
+                <a href="./bucket.html">
+                    <b><span id="bucket_counter">0</span></b>
+                    <img src="./shopping-cart-outline-svgrepo-com.svg">
+                </a>
+            </div>
+            
+        </div>
+
+        <div class="books">
+            <div class="product" id="chtulhu">
+                <div class="photo">
+                    <img src="./zov-ktulhu-govard.webp">
+                </div>
+
+                <article class="description">
+                    Американський письменник, поет і журналіст Говард Філіпс Лавкрафт (1890—1937) працював у жанрі хорору, містики,<br>
+                     фентезі та наукової фантастики й був творцем і магістром американської містичної «чорної школи» 20—30-х років минулого століття.<br>
+                    За життя він не опублікував жодної книжки і зажив слави серед широкого читацького загалу вже після своєї смерті.<br>
+                </article>
+                <div id="chtulhu_bb">
+                    <label for="buy_button"><b>500 грн</b></label>
+                    <input type="button" value="Придбати" class="buy_button" id="chtulhu_input">
+                </div>
+            </div>
+        </div>
+
+        <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+        <script>
+            // localStorage.setItem("whole_summ")
+            $(document).ready(function(){
+            $("#chtulhu_input").on("click", function(){
+                    let new_value = $("#bucket_counter").text();
+                    new_value = Number(new_value);
+                    new_value = ++new_value;
+                    $("#bucket_counter").text(new_value);
+                    localStorage.setItem("goods_amt", new_value);
+
+                    let current_summ = localStorage.getItem("whole_summ");
+                    current_summ = Number(current_summ) + 500;
+                    if (current_summ == null){
+                        localStorage.setItem("whole_summ", 500);
+                    }else{
+                        current_summ = Number(current_summ) + 500;
+                        localStorage.setItem("whole_summ", current_summ);
+                    };
+                });
+            });
+        </script>
+    </body>
+</html>
