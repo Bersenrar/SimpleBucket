@@ -1,9 +1,1 @@
-{
-    "goods_amt": 0,
-    "books": {
-        "lavkraft_chtulhu": {
-            "price": 500,
-            "amt": 0
-        }
-    }
-}
+{"whole_amt":0, "whole_summ":0, "books":{"chtulhu":0}}

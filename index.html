@@ -44,22 +44,30 @@
         <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
         <script>
             // localStorage.setItem("whole_summ")
+            localStorage.setItem("data_json", '{"whole_amt":0, "whole_summ":0, "books":{"chtulhu":0}}')
             $(document).ready(function(){
             $("#chtulhu_input").on("click", function(){
-                    let new_value = $("#bucket_counter").text();
-                    new_value = Number(new_value);
-                    new_value = ++new_value;
-                    $("#bucket_counter").text(new_value);
-                    localStorage.setItem("goods_amt", new_value);
+                    // let new_value = $("#bucket_counter").text();
+                    // new_value = Number(new_value);
+                    // new_value = ++new_value;
+                    // $("#bucket_counter").text(new_value);
+                    // localStorage.setItem("goods_amt", new_value);
+                    let data = JSON.parse(localStorage.getItem("data_json"));
 
-                    let current_summ = localStorage.getItem("whole_summ");
-                    current_summ = Number(current_summ) + 500;
-                    if (current_summ == null){
-                        localStorage.setItem("whole_summ", 500);
-                    }else{
-                        current_summ = Number(current_summ) + 500;
-                        localStorage.setItem("whole_summ", current_summ);
-                    };
+                    let whole_amt = ++data["whole_amt"];
+
+                    data["whole_amt"] = whole_amt;
+                    data["books"]["chtulhu"] = ++data["books"]["chtulhu"];
+                    data["whole_summ"] = data["whole_summ"] + 500;
+
+                    localStorage.setItem(
+                        "data_json",
+                        JSON.stringify(data)
+                    );
+
+                    $("#bucket_counter").text(whole_amt);
+
+                    console.log(localStorage.getItem("data_json"));
                 });
             });
         </script>
