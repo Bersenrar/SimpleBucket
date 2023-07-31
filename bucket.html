@@ -12,6 +12,11 @@
 
     <script>
         
+        let photos = {
+            "chtulhu": "./zov-ktulhu-govard.webp",
+            "fiesta": "./4140247409_fiesta-ernest-heminguej.webp"
+        };
+
         let div_h_container = document.createElement("div");
 
         div_h_container.setAttribute("class", "dynamic-div-header");
@@ -29,87 +34,48 @@
         let books_div = document.createElement("div");
         books_div.setAttribute("class", "book_shelf");
 
-        if (data["books"]["chtulhu"]["amt"] > 0){
-            let div = document.createElement("div");
-            div.setAttribute("class", "dynamic-div-book");
-            div.setAttribute("data-book-name", "chtulhu")
+        for (let current_book_name in data["books"]){
+            if (data["books"][current_book_name]["amt"] > 0){
 
-            let photo = document.createElement("img");
-            photo.setAttribute("src", "./zov-ktulhu-govard.webp");
+                let div = document.createElement("div");
+                div.setAttribute("class", "dynamic-div-book");
+                div.setAttribute("data-book-name", current_book_name);
+
+                let photo = document.createElement("img");
+                photo.setAttribute("src", photos[current_book_name]);
+
+                let counter_info = document.createElement("p");
+                counter_info.setAttribute("id", "description");
+                counter_info.style.fontSize = "20px";
+                counter_info.textContent = "Кількість: ";
+
+                let counter = document.createElement("span");
+                counter.setAttribute("id", "book_counter");
+                counter.style.fontSize = "25px";
+                counter.textContent = data["books"][current_book_name]["amt"];
+
+                counter_info.appendChild(counter);
+
+                let btn_remove = document.createElement("input");
+                btn_remove.setAttribute("type", "button");
+                btn_remove.setAttribute("value", "-");
+                btn_remove.setAttribute("class", "delete_book_button");
+
+                let btn_add = document.createElement("input");
+                btn_add.setAttribute("type", "button");
+                btn_add.setAttribute("value", "+");
+                btn_add.setAttribute("class", "add_book_button");
+
+                div.appendChild(photo);
+                div.appendChild(counter_info);
+                div.appendChild(btn_add);
+                div.appendChild(btn_remove);
 
 
-            let counter_info = document.createElement("p");
-            counter_info.setAttribute("id", "description");
-            counter_info.style.fontSize = "20px";
-            counter_info.textContent = "Кількість: ";
-
-
-            let counter = document.createElement("span");
-            counter.setAttribute("id", "book_counter");
-            counter.style.fontSize = "25px";
-            counter.textContent = data["books"]["chtulhu"]["amt"];
-
-            counter_info.appendChild(counter);
-
-            let btn_remove = document.createElement("input");
-            btn_remove.setAttribute("type", "button");
-            btn_remove.setAttribute("value", "-");
-            btn_remove.setAttribute("class", "delete_book_button");
-
-            let btn_add = document.createElement("input");
-            btn_add.setAttribute("type", "button");
-            btn_add.setAttribute("value", "+");
-            btn_add.setAttribute("class", "add_book_button");
-
-            div.appendChild(photo);
-            div.appendChild(counter_info);
-            div.appendChild(btn_add);
-            div.appendChild(btn_remove);
-
-
-            books_div.appendChild(div);
+                books_div.appendChild(div);
+            };
         };
 
-        if (data["books"]["fiesta"]["amt"] > 0){
-            let div = document.createElement("div");
-            div.setAttribute("class", "dynamic-div-book");
-            div.setAttribute("data-book-name", "fiesta");
-            // div.setAttribute("display", "inline");
-
-            let photo = document.createElement("img");
-            photo.setAttribute("src", "./4140247409_fiesta-ernest-heminguej.webp");
-
-
-            let counter_info = document.createElement("p");
-            counter_info.setAttribute("id", "description");
-            counter_info.style.fontSize = "20px";
-            counter_info.textContent = "Кількість: ";
-
-
-            let counter = document.createElement("span");
-            counter.setAttribute("id", "book_counter");
-            counter.style.fontSize = "25px";
-            counter.textContent = data["books"]["fiesta"]["amt"];
-
-            counter_info.appendChild(counter);
-
-            let btn_remove = document.createElement("input");
-            btn_remove.setAttribute("type", "button");
-            btn_remove.setAttribute("value", "-");
-            btn_remove.setAttribute("class", "delete_book_button");
-
-            let btn_add = document.createElement("input");
-            btn_add.setAttribute("type", "button");
-            btn_add.setAttribute("value", "+");
-            btn_add.setAttribute("class", "add_book_button");
-
-            div.appendChild(photo);
-            div.appendChild(counter_info);
-            div.appendChild(btn_add);
-            div.appendChild(btn_remove);
-
-            books_div.appendChild(div);
-        };
 
         let summary_bucket = document.createElement("div");
         summary_bucket.setAttribute("class", "bucket");
