@@ -34,31 +34,49 @@
                      фентезі та наукової фантастики й був творцем і магістром американської містичної «чорної школи» 20—30-х років минулого століття.<br>
                     За життя він не опублікував жодної книжки і зажив слави серед широкого читацького загалу вже після своєї смерті.<br>
                 </article>
-                <div id="chtulhu_bb">
+                <div id="bb_cont" data-book-name="chtulhu">
                     <label for="buy_button"><b>500 грн</b></label>
                     <input type="button" value="Придбати" class="buy_button" id="chtulhu_input">
                 </div>
             </div>
+
+            <div class="product" id="fiesta">
+                <div class="photo">
+                    <img src="./4140247409_fiesta-ernest-heminguej.webp">
+                </div>
+
+                <article class="description">
+                    Американський журналіст Джейк Барнс відвоював на фронтах Першої світової, де отримав важкі поранення. <br>
+                    Барнс щоночі проводить час з друзями в барі на бульварі Монпарнас, сподіваючись, що алкоголь допоможе йому залікувати душевні і тілесні рани, завдані Першою світовою війною. <br>
+                    Барнс закоханий у Брет Ешлі, яка втілює собою нову сексуальну свободу 1920-х років, має численні романи. Вона теж закохана в Барнса, однак, через отримані на війні Джейком травм, їх роман має платонічний характер.<br>
+                </article>
+                <div id="bb_cont" data-book-name="fiesta">
+                    <label for="buy_button"><b>599 грн</b></label>
+                    <input type="button" value="Придбати" class="buy_button" id="chtulhu_input">
+                </div>
+            </div>
+
         </div>
 
         <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
         <script>
-            // localStorage.setItem("whole_summ")
-            localStorage.setItem("data_json", '{"whole_amt":0, "whole_summ":0, "books":{"chtulhu":{"amt":0, "price":500}}}')
+            
+            localStorage.setItem(
+                "data_json", '{"whole_amt":0, "whole_summ":0, "books":{"chtulhu":{"amt":0, "price":500}, "fiesta": {"amt": 0, "price":599}}}'
+                );
             $(document).ready(function(){
-            $("#chtulhu_input").on("click", function(){
-                    // let new_value = $("#bucket_counter").text();
-                    // new_value = Number(new_value);
-                    // new_value = ++new_value;
-                    // $("#bucket_counter").text(new_value);
-                    // localStorage.setItem("goods_amt", new_value);
+            $(".buy_button").on("click", function(e){
+                    
                     let data = JSON.parse(localStorage.getItem("data_json"));
 
                     let whole_amt = ++data["whole_amt"];
 
+                    let parent_div = $(this).parent();
+                    let book_name = parent_div.data()["bookName"];
+                    
                     data["whole_amt"] = whole_amt;
-                    data["books"]["chtulhu"]["amt"] = ++data["books"]["chtulhu"]["amt"];
-                    data["whole_summ"] = data["whole_summ"] + 500;
+                    data["books"][book_name]["amt"] = ++data["books"][book_name]["amt"];
+                    data["whole_summ"] = data["whole_summ"] + data["books"][book_name]["price"];
 
                     localStorage.setItem(
                         "data_json",

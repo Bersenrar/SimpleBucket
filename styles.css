@@ -70,7 +70,7 @@ a {
     top: 25%;
 }
 
-#chtulhu #chtulhu_bb {
+.bb_cont {
     position: relative;
     left: 200px;
     bottom: 45px;
@@ -80,4 +80,8 @@ a {
     border: 2px solid;
     position: absolute;
     width: 100%;
+}
+
+#fiesta {
+    top: 80%;
 }

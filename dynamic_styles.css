@@ -30,9 +30,10 @@ body {
 
 .dynamic-div-book {
     position: relative;
-    width: 100%;
+    /* width: 100%; */
     /* border: 2px solid; */
-    display: inline;
+    display: inline-block;
+    margin-right: 10%;
 }
 
 .dynamic-div-book img {
@@ -40,13 +41,23 @@ body {
     width: 200px;
 }
 
-
-.delete_book_button {
+.add_book_button {
     font-size: 20px;
-    width: 200px;
+    width: 50px;
     height: 50px;
     background-color: aquamarine;
     cursor: pointer;
+    border-radius: 50%;
+    margin-right: 5px;
+}
+
+.delete_book_button {
+    font-size: 20px;
+    width: 50px;
+    height: 50px;
+    background-color: aquamarine;
+    cursor: pointer;
+    border-radius: 50%;
 }
 
 .bucket {
