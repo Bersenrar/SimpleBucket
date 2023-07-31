@@ -44,7 +44,7 @@
         <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
         <script>
             // localStorage.setItem("whole_summ")
-            localStorage.setItem("data_json", '{"whole_amt":0, "whole_summ":0, "books":{"chtulhu":0}}')
+            localStorage.setItem("data_json", '{"whole_amt":0, "whole_summ":0, "books":{"chtulhu":{"amt":0, "price":500}}}')
             $(document).ready(function(){
             $("#chtulhu_input").on("click", function(){
                     // let new_value = $("#bucket_counter").text();
@@ -57,7 +57,7 @@
                     let whole_amt = ++data["whole_amt"];
 
                     data["whole_amt"] = whole_amt;
-                    data["books"]["chtulhu"] = ++data["books"]["chtulhu"];
+                    data["books"]["chtulhu"]["amt"] = ++data["books"]["chtulhu"]["amt"];
                     data["whole_summ"] = data["whole_summ"] + 500;
 
                     localStorage.setItem(

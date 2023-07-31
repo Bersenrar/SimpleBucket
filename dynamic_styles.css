@@ -1,0 +1,56 @@
+body {
+    background-color: #cfd0d2;
+}
+
+
+.dynamic-div-header {
+    background-color: bisque;
+    display: block;
+    width: 100%;
+    height: 10%;
+    position: absolute;
+    border: 2px solid;
+}
+
+.dynamic-div-header h1 {
+    position: relative;
+    left: 45%;
+    /* top: 30%; */
+    /* margin-top: 5%; */
+    display:flex;
+}
+
+
+.book_shelf {
+    position: absolute;
+    width: 100%;
+    border: 2px solid;
+    top: 15%;
+}
+
+.dynamic-div-book {
+    position: relative;
+    width: 100%;
+    /* border: 2px solid; */
+    display: inline;
+}
+
+.dynamic-div-book img {
+    height: 400px;
+    width: 200px;
+}
+
+
+.delete_book_button {
+    font-size: 20px;
+    width: 200px;
+    height: 50px;
+    background-color: aquamarine;
+    cursor: pointer;
+}
+
+.bucket {
+    font-size: 20px;
+    top: 80%;
+    position: absolute;
+}

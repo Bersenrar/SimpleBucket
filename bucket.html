@@ -1,25 +1,139 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <link rel="stylesheet" href="./styles.css">
+    <link rel="stylesheet" href="./dynamic_styles.css">
 </head>
 <body>
-    <div class="bucket">
+    <!-- <div class="bucket">
         <span id="goods_amt">Загальна кількість товару: <span id="goods_amt_int">0</span></span>
         <br>
         <span id="whole_summ">Сумма до оплаты: <span id="whole_summ_int">0</span></span>
-    </div>
+    </div> -->
+
+    <script>
+        
+        let div_h_container = document.createElement("div");
+
+        div_h_container.setAttribute("class", "dynamic-div-header");
+
+        let bucket_h = document.createElement("h1");
+        bucket_h.textContent = "Кошик";
+
+        div_h_container.appendChild(bucket_h);
+
+        document.body.appendChild(div_h_container);
+
+        let data = localStorage.getItem("data_json");
+        data = JSON.parse(data);
+
+        let books_div = document.createElement("div");
+        books_div.setAttribute("class", "book_shelf");
+
+        if (data["books"]["chtulhu"]){
+            let div = document.createElement("div");
+            div.setAttribute("class", "dynamic-div-book");
+            div.setAttribute("data-book-name", "chtulhu")
+
+            let photo = document.createElement("img");
+            photo.setAttribute("src", "./zov-ktulhu-govard.webp");
+
+
+            let counter_info = document.createElement("p");
+            counter_info.setAttribute("id", "description");
+            counter_info.style.fontSize = "20px";
+            counter_info.textContent = "Кількість: ";
+
+
+            let counter = document.createElement("span");
+            counter.setAttribute("id", "book_counter");
+            counter.style.fontSize = "25px";
+            counter.textContent = data["books"]["chtulhu"]["amt"];
+
+            counter_info.appendChild(counter);
+
+            let btn = document.createElement("input");
+            btn.setAttribute("type", "button");
+            btn.setAttribute("value", "Видалити");
+            btn.setAttribute("class", "delete_book_button");
+
+            div.appendChild(photo);
+            div.appendChild(counter_info);
+            div.appendChild(btn);
+
+            books_div.appendChild(div);
+        };
+
+        let summary_bucket = document.createElement("div");
+        summary_bucket.setAttribute("class", "bucket");
+
+        let conclusion_message_amt = document.createElement("p");
+        conclusion_message_amt.setAttribute("id", "summ_text_container_amt");
+        conclusion_message_amt.textContent = "Загальна кількість товару: ";
+
+        let conclusion_message_int = document.createElement("p");
+        conclusion_message_int.setAttribute("id", "summ_text_container_int");
+        conclusion_message_int.textContent = "Загальна сумма до оплаты: ";
+
+        let whole_amt = document.createElement("span");
+        whole_amt.setAttribute("id", "summ_amt");
+        whole_amt.textContent = data["whole_amt"];
+
+        let whole_summ = document.createElement("span");
+        whole_summ.setAttribute("id", "summ_int");
+        whole_summ.textContent = data["whole_summ"];
+
+        conclusion_message_amt.appendChild(whole_amt);
+        conclusion_message_int.appendChild(whole_summ);
+
+        summary_bucket.appendChild(conclusion_message_amt);
+        summary_bucket.appendChild(conclusion_message_int);
+
+        document.body.appendChild(books_div);
+        document.body.appendChild(summary_bucket);
+        // div.appendChild();
+    </script>
 
     <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
     <script>
-        $(document).ready(function() {
-            function updatePageFromLocalStorage() {
-                let data = JSON.parse(localStorage.getItem("data_json"));
-                $("#goods_amt_int").text(data["whole_amt"]);
-                $("#whole_summ_int").text(data["whole_summ"]);
-            };
 
-            updatePageFromLocalStorage();
+        $(document).ready(function() {
+            
+            // function updatePageFromLocalStorage() {
+            //     let data = JSON.parse(localStorage.getItem("data_json"));
+            //     return data;
+            //     // $("#goods_amt_int").text(data["whole_amt"]);
+            //     // $("#whole_summ_int").text(data["whole_summ"]);
+            // };
+
+            // let data_json = updatePageFromLocalStorage();
+
+            $(".delete_book_button").on("click", function(e){
+            
+                let data = localStorage.getItem("data_json");
+                data = JSON.parse(data);
+
+                let parent_div = $(this).parent();
+                let book_name = parent_div.data()["bookName"];
+
+                if (data["books"][book_name]["amt"] <= 0){
+                    return 0;
+                }else{
+
+                    data["books"][book_name]["amt"] = --data["books"][book_name]["amt"];
+                    data["whole_summ"] = data["whole_summ"] - data["books"][book_name]["price"]
+                    data["whole_amt"] = --data["whole_amt"]
+
+                    localStorage.setItem("data_json", JSON.stringify(data));
+
+                    let counter = $("#book_counter", parent_div);
+                    counter.text(data["books"][book_name]["amt"]);
+
+                    $("#summ_amt").text(data["whole_amt"]);
+                    $("#summ_int").text(data["whole_summ"]);
+                    
+                    console.log(data);
+                };
+            });
         });
     </script>
 </body>
